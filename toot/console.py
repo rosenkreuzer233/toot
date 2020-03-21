@@ -135,6 +135,10 @@ common_timeline_args = [
         "type": int,
         "help": "show timeline for given list.",
     }),
+    (["--account"], {
+        "type": str,
+        "help": "account name or numeric ID. Show this account's timeline (does not require auth), private may toot is included when option -u is provided.",
+    }),
 ]
 
 timeline_args = common_timeline_args + [

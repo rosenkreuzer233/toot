@@ -29,6 +29,10 @@ def get_timeline_generator(app, user, args):
         return api.tag_timeline_generator(instance, args.tag, local=args.local, limit=args.count)
     elif args.list:
         return api.timeline_list_generator(app, user, args.list, limit=args.count)
+    elif args.account:
+        instance = args.instance or app.instance
+        account_id = _find_account(app, user, args.account)['id']
+        return api.account_timeline_generator(instance, user, account_id, limit=args.count)
     else:
         return api.home_timeline_generator(app, user, limit=args.count)
 
@@ -243,6 +247,8 @@ def _find_account(app, user, account_name):
         account_name = account_name[1:]
 
     for account in accounts:
+        if '@' not in account['acct']:
+            account['acct'] = account['acct']+'@'+app.instance
         if account['acct'] == account_name:
             return account
 
