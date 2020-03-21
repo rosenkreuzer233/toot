@@ -137,7 +137,7 @@ common_timeline_args = [
     }),
     (["--account"], {
         "type": str,
-        "help": "account name or numeric ID. Show this account's timeline (does not require auth), private may toot is included when option -u is provided.",
+        "help": "Show this account's timeline (does not require auth), private toot will be included when -u option is provided.",
     }),
 ]
 
