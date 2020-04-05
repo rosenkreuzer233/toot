@@ -50,11 +50,14 @@ def timeline(app, user, args):
         if args.reverse:
             items = reversed(items)
 
-        print_timeline(items)
+        print_timeline(items,format=args.format)
 
         if args.once:
             break
 
+        if args.yes:
+            continue
+        
         char = input("\nContinue? [Y/n] ")
         if char.lower() == "n":
             break

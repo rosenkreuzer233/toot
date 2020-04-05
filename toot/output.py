@@ -191,11 +191,15 @@ def print_status(status, width):
     ))
 
 
-def print_timeline(items, width=100):
-    print_out("─" * width)
-    for item in items:
-        print_status(item, width)
+def print_timeline(items, width=100, format='default'):
+    if format == 'default':
         print_out("─" * width)
+        for item in items:
+            print_status(item, width)
+            print_out("─" * width)
+    if format == 'json':
+        for item in items:
+            print(item)
 
 
 notification_msgs = {

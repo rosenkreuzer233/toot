@@ -157,6 +157,16 @@ timeline_args = common_timeline_args + [
         "default": False,
         "help": "Only show the first <count> toots, do not prompt to continue.",
     }),
+    (["-f", "--format"], {
+        "default": 'default',
+        "choices": ['default','json'],
+        "help": "show the timeline with specific format.",
+    }),
+    (["-y", "--yes"], {
+        "action": "store_true",
+        "default": False,
+        "help": "always answer yes to Continue.",
+    }),
 ]
 
 curses_args = common_timeline_args + [
