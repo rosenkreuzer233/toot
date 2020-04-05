@@ -29,10 +29,9 @@ def get_timeline_generator(app, user, args):
         return api.tag_timeline_generator(instance, args.tag, local=args.local, limit=args.count)
     elif args.list:
         return api.timeline_list_generator(app, user, args.list, limit=args.count)
-    elif args.account:
-        instance = args.instance or app.instance
+    elif args.account and args.using:
         account_id = _find_account(app, user, args.account)['id']
-        return api.account_timeline_generator(instance, user, account_id, limit=args.count)
+        return api.account_timeline_generator(app, user, account_id, limit=args.count)
     else:
         return api.home_timeline_generator(app, user, limit=args.count)
 

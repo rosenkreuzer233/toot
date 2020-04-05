@@ -198,10 +198,10 @@ def tag_timeline_generator(instance, hashtag, local=False, limit=20):
     return _anon_timeline_generator(instance, path, params)
 
 
-def account_timeline_generator(instance, user, account_id, local=False, limit=20):
+def account_timeline_generator(app, user, account_id, local=False, limit=20):
     path = '/api/v1/accounts/{}/statuses'.format(account_id)
     params = {'limit': limit}
-    return _anon_timeline_generator(instance, path, params)
+    return _timeline_generator(app, user, path, params)
 
 
 def timeline_list_generator(app, user, list_id, limit=20):
