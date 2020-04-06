@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+from time import sleep
 
 from toot import api, config
 from toot.auth import login_interactive, login_browser_interactive, create_app_interactive
@@ -29,7 +30,7 @@ def get_timeline_generator(app, user, args):
         return api.tag_timeline_generator(instance, args.tag, local=args.local, limit=args.count)
     elif args.list:
         return api.timeline_list_generator(app, user, args.list, limit=args.count)
-    elif args.account and args.using:
+    elif args.account:
         account_id = _find_account(app, user, args.account)['id']
         return api.account_timeline_generator(app, user, account_id, limit=args.count)
     else:
@@ -46,6 +47,8 @@ def timeline(app, user, args):
             print_out("That's all folks.")
             return
 
+        if args.account and args.yes:
+            sleep(5)
         if args.reverse:
             items = reversed(items)
 
