@@ -216,7 +216,13 @@ def upload_media(app, user, file):
 
 
 def search(app, user, query, resolve):
-    return http.get(app, user, '/api/v2/search', {
+    name = (app and app.instance)
+    instance = get_instance(name)
+    # when version is lager then 2.4.0, use /api/v1/search instead
+    suffix_path = '/api/v2/search'
+    if instance['version'] <= '2.4.0':
+        suffix_path = '/api/v1/search'
+    return http.get(app, user, suffix_path, {
         'q': query,
         'resolve': resolve,
     }).json()
